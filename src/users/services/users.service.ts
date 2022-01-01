@@ -11,7 +11,7 @@ import { ProductsService } from '../../products/services/products.service';
 export class UsersService {
   constructor(
     private productsService: ProductsService,
-    @Inject('MONGO') private databaseMongo: Db,
+    // @Inject('MONGO') private databaseMongo: Db,
     @InjectModel(User.name) private userModel: Model<User>,
   ) {}
 
@@ -19,10 +19,10 @@ export class UsersService {
     return this.userModel.find().exec();
   }
 
-  getTasks() {
-    const tasksCollection = this.databaseMongo.collection('tasks');
-    return tasksCollection.find().toArray();
-  }
+  // getTasks() {
+  //   const tasksCollection = this.databaseMongo.collection('tasks');
+  //   return tasksCollection.find().toArray();
+  // }
 
   async findOne(id: string) {
     return this.userModel.findById(id);

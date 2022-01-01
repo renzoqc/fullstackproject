@@ -25,10 +25,10 @@ export class UsersController {
     return this.usersService.findAll();
   }
 
-  @Get('tasks')
-  tasks() {
-    return this.usersService.getTasks();
-  }
+  // @Get('tasks')
+  // tasks() {
+  //   return this.usersService.getTasks();
+  // }
 
   @Get(':id')
   get(@Param('id') id: string) {
