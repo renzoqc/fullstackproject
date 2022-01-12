@@ -1,11 +1,13 @@
-import { Module, HttpModule, HttpService } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
+
 import * as Joi from 'joi';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { ProductsModule } from './products/products.module';
+// import { UsersModule } from './users/users.module';
+import { NewsModule } from './news/news.module';
 import { DatabaseModule } from './database/database.module';
 import { enviroments } from './enviroments';
 import config from './config';
@@ -22,24 +24,12 @@ import config from './config';
         DATABASE_PORT: Joi.number().required(),
       }),
     }),
-    HttpModule,
-    UsersModule,
-    ProductsModule,
+    // UsersModule,
+    NewsModule,
     DatabaseModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    // {
-    //   provide: 'TASKS',
-    //   useFactory: async (http: HttpService) => {
-    //     const tasks = await http
-    //       .get('https://jsonplaceholder.typicode.com/todos')
-    //       .toPromise();
-    //     return tasks.data;
-    //   },
-    //   inject: [HttpService],
-    // },
-  ],
+  providers: [AppService],
 })
 export class AppModule {}

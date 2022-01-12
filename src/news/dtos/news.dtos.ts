@@ -14,13 +14,13 @@ import {
 import { Type } from 'class-transformer';
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 
-import { CreateCategoryDto } from './category.dtos';
-import { CreateSubDocDto } from './sub-doc.dto';
+// import { CreateCategoryDto } from './category.dtos';
+// import { CreateSubDocDto } from './sub-doc.dto';
 
-export class CreateProductDto {
+export class CreateNewDto {
   @IsString()
   @IsNotEmpty()
-  @ApiProperty({ description: `product's name` })
+  @ApiProperty({ description: `New's name` })
   readonly name: string;
 
   @IsString()
@@ -44,29 +44,29 @@ export class CreateProductDto {
   @ApiProperty()
   readonly image: string;
 
-  @IsNotEmpty()
-  @ValidateNested()
-  @ApiProperty()
-  readonly category: CreateCategoryDto;
+  // @IsNotEmpty()
+  // @ValidateNested()
+  // @ApiProperty()
+  // readonly category: CreateCategoryDto;
 
   @IsNotEmpty()
   @IsMongoId()
   readonly brand: string;
 
-  @IsNotEmpty()
-  @ValidateNested()
-  readonly subDoc: CreateSubDocDto;
+  // @IsNotEmpty()
+  // @ValidateNested()
+  // readonly subDoc: CreateSubDocDto;
 
-  @IsNotEmpty()
-  @IsArray()
-  @ValidateNested({ each: true })
-  @Type(() => CreateSubDocDto)
-  readonly subDocs: CreateSubDocDto[];
+  // @IsNotEmpty()
+  // @IsArray()
+  // @ValidateNested({ each: true })
+  // @Type(() => CreateSubDocDto)
+  // readonly subDocs: CreateSubDocDto[];
 }
 
-export class UpdateProductDto extends PartialType(CreateProductDto) {}
+export class UpdateNewDto extends PartialType(CreateNewDto) {}
 
-export class FilterProductsDto {
+export class FilterNewsDto {
   @IsOptional()
   @IsPositive()
   limit: number;
